@@ -21,8 +21,10 @@ def main():
     Player.containers = (updatable, drawable,shots)
     Shot.containers = (shots, updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,PLAYER_RADIUS)
-    font = pygame.font.Font(None, 36)  # Initialize font with size 36
     while True:
+        font = pygame.font.Font(None, 36) 
+        score_text = font.render(f'Score: {player.score}', True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -37,8 +39,6 @@ def main():
                 print("Game over!")
                 sys.exit()
         pygame.Surface.fill(screen,color=(0,0,0))
-        score_text = font.render(f'Score: {player.score}', True, (255, 255, 255))
-        screen.blit(score_text, (10, 10))
         for obj in drawable:
             obj.draw(screen)
         pygame.display.flip()
