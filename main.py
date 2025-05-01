@@ -21,6 +21,7 @@ def main():
     Player.containers = (updatable, drawable,shots)
     Shot.containers = (shots, updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,PLAYER_RADIUS)
+    font = pygame.font.Font(None, 36)
     while True:
         font = pygame.font.Font(None, 36) 
         score_text = font.render(f'Score: {player.score}', True, (255, 255, 255))
@@ -41,6 +42,8 @@ def main():
         pygame.Surface.fill(screen,color=(0,0,0))
         for obj in drawable:
             obj.draw(screen)
+        score_text = font.render(f'Score: {player.score}', True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
         pygame.display.flip()
         dt = float(pygame.time.Clock().tick(60)) / 1000
 if __name__ == "__main__":
